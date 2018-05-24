@@ -7,7 +7,6 @@
  */
 namespace Softce\Rangeofdishes\FormOfDishes\Contract;
 
-use \Illuminate\Support\Collection;
 
 interface FormOfDishes
 {
