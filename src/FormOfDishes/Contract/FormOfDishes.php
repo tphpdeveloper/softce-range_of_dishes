@@ -12,3 +12,5 @@ interface FormOfDishes
 {
     public function buildForm();
 }
+
+?>

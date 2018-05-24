@@ -21,3 +21,5 @@ class BuildFormOfDishes implements FormOfDishes
         dump($packages);
     }
 }
+
+?>

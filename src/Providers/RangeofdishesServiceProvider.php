@@ -20,3 +20,5 @@ class RangeofdishesServiceProvider extends ServiceProvider
     }
 
 }
+
+?>
