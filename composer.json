@@ -1,0 +1,16 @@
+{
+    "name": "softce/range_of_dishes",
+    "description": "Module for ordering a daily diet",
+    "authors": [
+        {
+            "name": "tphpdeveloper",
+            "email": "igorkutsan@ukr.net"
+        }
+    ],
+    "require": {
+        "php" : ">=7.0",
+        "laravel/framework": "5.5.*"
+
+    }
+
+}
