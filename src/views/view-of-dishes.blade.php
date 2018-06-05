@@ -132,7 +132,7 @@
 
             });
 
-            //on click input checkbox
+            //when select item
             //Select init Start
             if ($(".main-select").length) {
                 $(".main-select").selectmenu({
