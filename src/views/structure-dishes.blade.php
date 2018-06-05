@@ -1,4 +1,4 @@
-<{{ isset($single_dishes) ? 'form method="post" action="#"' : 'div' }} id="package_{{ $package->id }}" class="constructor__content {{ isset($active) ? 'active' : '' }}">
+<{{ isset($single_dishes) ? 'form method="post" action="'. route('add.dishes') .'"' : 'div' }} id="package_{{ $package->id }}" class="constructor__content {{ isset($active) ? 'active' : '' }}">
     @if(isset($single_dishes))
         {{ csrf_field() }}
     @endif
@@ -152,7 +152,7 @@
                 <span class="js_total_price">{{ MultipleCurrency::setNumberFormat()->price($total_price) }}</span> грн
             </div>
         </div>
-        <button type="button" class="button button--second js-next-step">
+        <button type="{{ isset($single_dishes) || isset($button_type) ? 'submit' : 'button' }}" class="button button--second  {{ isset($single_dishes) || isset($button_type) ? '' : 'js-next-step' }}">
             <span>
                 {{  $name_button  }}
             </span>

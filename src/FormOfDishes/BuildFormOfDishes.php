@@ -53,6 +53,9 @@ class BuildFormOfDishes implements FormOfDishes
                     $data['active'] = true;
                 }
 
+                if($co_package + 1 == count($packages)){
+                    $data['button_type'] = true;
+                }
                 $all_dishes .= view('dishes::structure-dishes', $data)->render() ;
 
                 $data['single_dishes'] = true;
@@ -68,6 +71,7 @@ class BuildFormOfDishes implements FormOfDishes
             ->with('all_dishes', $all_dishes)
             ->with('single_dishes', $single_dishes);
     }
+
 }
 
 ?>

@@ -14,7 +14,7 @@
                     <span>{{ $lang_static->getTranslate('i-collect') }}</span> {{ $lang_static->getTranslate('1-meal') }}
                 </div>
             </div>
-            <form class="constructor__wrapper active" method="post" action="#">
+            <form class="constructor__wrapper active" method="post" action="{{ route('add.dishes') }}">
                 {{ csrf_field() }}
 
 
