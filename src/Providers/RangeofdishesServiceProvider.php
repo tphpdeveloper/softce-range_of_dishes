@@ -10,7 +10,7 @@ class RangeofdishesServiceProvider extends ServiceProvider
 {
 
     public function boot(){
-
+        $this->loadViewsFrom(dirname(__DIR__) . '\views', 'dishes');
     }
 
     public function register(){
