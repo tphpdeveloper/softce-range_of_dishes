@@ -11,12 +11,15 @@ namespace Softce\Rangeofdishes\FormOfDishes;
 use Mage2\Ecommerce\Models\Database\LangStatic;
 use Mage2\Ecommerce\Models\Database\Package;
 use Softce\Rangeofdishes\FormOfDishes\Contract\FormOfDishes;
+use Session;
 
 class BuildFormOfDishes implements FormOfDishes
 {
 
     public function buildForm()
     {
+        Session::forget('cart');
+
         $packages = Package::with([
             'products',
             'products.variants',

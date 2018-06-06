@@ -1,4 +1,4 @@
-<{{ isset($single_dishes) ? 'form method="post" action="'. route('add.dishes') .'"' : 'div' }} id="package_{{ $package->id }}" class="constructor__content {{ isset($active) ? 'active' : '' }}">
+<{{ isset($single_dishes) ? 'form method=post action='. route('add.dishes') : 'div' }} id="package_{{ $package->id }}" class="constructor__content {{ isset($active) ? 'active' : '' }}">
     @if(isset($single_dishes))
         {{ csrf_field() }}
     @endif
@@ -44,23 +44,25 @@
             <div class="constructor__row"  >
                 <div class="constructor__row-name">
                     @if($count_variant)
-                        <select name="{{ $product->slug }}"
+                        <select name="package[{{ $package->id }}][{{ $product->slug }}]"
                                 required
                                 class="main-select"
                                 @foreach($structure_attribute as $co => $name_value)
                                     data-{{ $type[$co] }}="{{ $name_value }}"
                                 @endforeach
-                                data-price="{{ $product->price }}"
+                                data-price="{{ $product->price_discount }}"
                                 data-package="{{ $package->id }}"
                                 data-all="{{ isset($single_dishes) ? 'form' : 'div' }}"
                             >
 
-                            <option value="{{ $product->slug }}"
-                                    @foreach($structure_attribute as $co => $name_value)
+                            <option @foreach($structure_attribute as $co => $name_value)
                                         data-{{ $type[$co] }}="{{ $name_value }}"
+                                        @if($type[$co] == 'count')
+                                            value="{{ $name_value }}"
+                                        @endif
                                     @endforeach
-                                    data-price="{{ $product->price }}"
-                                    data-name="{{ $product->slug }}"
+                                    data-price="{{ $product->price_discount }}"
+                                    data-name="package[{{ $package->id }}][{{ $product->slug }}]"
                                 >
                                 {{ $product->name }}
                             </option>
@@ -81,12 +83,14 @@
                                     @endforeach
                                 @endforeach
 
-                                <option value="{{ $variant->slug }}"
-                                        @foreach($structure_variant_attribute as $co => $name_value)
+                                <option @foreach($structure_variant_attribute as $co => $name_value)
                                             data-{{ $type[$co] }}="{{ $name_value }}"
+                                            @if($type[$co] == 'count')
+                                                value="{{ $name_value }}"
+                                            @endif
                                         @endforeach
-                                        data-price="{{ $variant->price }}"
-                                        data-name="{{ $variant->slug }}"
+                                        data-price="{{ $variant->price_discount }}"
+                                        data-name="package[{{ $package->id }}][{{ $variant->slug }}]"
                                     >
                                     {{ $variant->name }}
                                 </option>
@@ -97,14 +101,17 @@
                             <input
                                 type="checkbox"
                                 checked
-                                name="{{ $product->slug }}"
+                                name="package[{{ $package->id }}][{{ $product->slug }}]"
                                 data-package="{{ $package->id }}"
                                 data-all="{{ isset($single_dishes) ? 'form' : 'div' }}"
                                 @foreach($structure_attribute as $co => $name_value)
                                         data-{{ $type[$co] }}="{{ $name_value }}"
+                                    @if($type[$co] == 'count')
+                                        value="{{ $name_value }}"
+                                    @endif
                                 @endforeach
                                 class="js_check_uncheck_dish"
-                                data-price="{{ $product->price }}"
+                                data-price="{{ $product->price_discount }}"
                                 >
                             <span></span>
                         </label>
@@ -121,7 +128,7 @@
                             }
 
                             $total_weight += ( $name_value * $structure_attribute[$co - 1] );
-                            $total_price += ( $product->price * $structure_attribute[$co - 1] );
+                            $total_price += ( $product->price_discount * $structure_attribute[$co - 1] );
                         @endphp
                     @endif
 

@@ -6,6 +6,6 @@ Route::group([
     'middleware' => ['web']
 ],function(){
 
-    Route::post( '/add/dishes', ['as' => 'add.dishes', 'use' => 'DishesController@addToCartDishes' ] );
+    Route::post( '/add/dishes', ['as' => 'add.dishes', 'uses' => 'DishesController@addToCartDishes' ] );
 
 });
